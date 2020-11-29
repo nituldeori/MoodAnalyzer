@@ -8,18 +8,16 @@ import static org.junit.Assert.*;
 
 public class MoodAnalyserTest {
     @Test
-    public void givenNullMoodreturnHappy(){
+    public void givenNullMoodShouldThrowException() throws MoodAnalysisException {
         MoodAnalyser moodAnalyser=new MoodAnalyser(null);
-        String mood=null;
-        try {
-            ExpectedException exceptionRule=ExpectedException.none();
-            exceptionRule.expect(MoodAnalysisException.class);
-            mood=moodAnalyser.analyseMood();
-            Assert.assertEquals("HAPPY",mood);
-        } catch (MoodAnalysisException e){
-            e.printStackTrace();
-        }
+        moodAnalyser.analyseMood(null);
 
+    }
+
+    @Test
+    public void givenEmptyMoodShouldThrowException() throws MoodAnalysisException{
+        MoodAnalyser moodAnalyser=new MoodAnalyser("");
+        moodAnalyser.analyseMood("");
     }
     @Test
     public void givenSadMoodreturnSad(){
